@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://iskandeor.com/sitemap.xml
