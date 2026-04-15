@@ -29,6 +29,7 @@ body {
   font-weight: 300;
   overflow-x: hidden;
   cursor: none;
+  line-height: 1.65;
 }
 
 a { color: inherit; }
@@ -43,7 +44,8 @@ nav {
   position:fixed; top:0; left:0; right:0; z-index:200;
   display:flex; align-items:center; justify-content:space-between;
   padding:24px var(--page-pad);
-  background:linear-gradient(to bottom, rgba(6,6,6,.97) 0%, transparent 100%);
+  background:linear-gradient(to bottom, rgba(6,6,6,.98) 0%, rgba(6,6,6,.78) 52%, transparent 100%);
+  backdrop-filter: blur(10px);
 }
 .logo {
   font-family:'Cormorant Garamond',serif;
@@ -101,6 +103,7 @@ body.en [data-en] { display:revert; }
   display:flex; flex-direction:column;
   justify-content:center; padding:0 var(--page-pad) 0; padding-top:120px;
   position:relative; z-index:2;
+  max-width:720px;
 }
 .hero-right { position:relative; overflow:hidden; }
 .hero-img-main {
@@ -129,6 +132,14 @@ body.en [data-en] { display:revert; }
   color:var(--muted); opacity:0; animation:fadeUp .7s .85s forwards;
 }
 .hero-role span { color:var(--gold2); }
+.hero-copy {
+  max-width:520px;
+  margin-top:26px;
+  font-size:15px;
+  line-height:1.9;
+  color:#a89f95;
+  opacity:0; animation:fadeUp .7s .95s forwards;
+}
 .hero-line {
   display:flex; align-items:center; gap:18px; margin-top:50px;
   opacity:0; animation:fadeUp .7s 1.05s forwards;
@@ -137,6 +148,44 @@ body.en [data-en] { display:revert; }
 .hero-line p {
   font-family:'Cormorant Garamond',serif; font-size:16px;
   font-style:italic; color:var(--muted);
+}
+.hero-actions {
+  display:flex;
+  gap:14px;
+  margin-top:34px;
+  opacity:0; animation:fadeUp .7s 1.15s forwards;
+}
+.hero-btn {
+  display:inline-flex; align-items:center; justify-content:center;
+  min-width:182px;
+  padding:14px 22px;
+  border:1px solid var(--border);
+  border-radius:999px;
+  text-decoration:none;
+  font-size:10px;
+  letter-spacing:2.6px;
+  text-transform:uppercase;
+  transition:background .3s, color .3s, border-color .3s, transform .3s;
+  cursor:none;
+}
+.hero-btn.primary {
+  background:var(--gold);
+  border-color:var(--gold);
+  color:var(--dark);
+}
+.hero-btn.secondary {
+  background:rgba(255,255,255,0.02);
+  color:var(--text);
+}
+.hero-btn:hover { transform:translateY(-2px); }
+.hero-btn.primary:hover {
+  background:var(--gold2);
+  border-color:var(--gold2);
+}
+.hero-btn.secondary:hover {
+  background:var(--dark2);
+  border-color:rgba(184,146,74,0.3);
+  color:var(--gold2);
 }
 .hero-scroll {
   position:absolute; bottom:40px; left:50%; transform:translateX(-50%);
@@ -183,11 +232,6 @@ body.en [data-en] { display:revert; }
 .award-item { display:flex; gap:20px; align-items:baseline; padding:14px 0; border-bottom:1px solid rgba(184,146,74,0.08); }
 .award-year { font-family:'Cormorant Garamond',serif; font-size:15px; color:var(--gold); min-width:44px; font-style:italic; }
 .award-desc { font-size:13px; color:#8a8278; line-height:1.5; }
-.about-collab { margin-top:40px; background:var(--dark2); border:1px solid var(--border); padding:28px 30px; border-radius: var(--card-radius); }
-.collab-title { font-size:9px; letter-spacing:3px; text-transform:uppercase; color:var(--muted); margin-bottom:18px; }
-.collab-names { font-family:'Cormorant Garamond',serif; font-size:17px; font-style:italic; color:#c0b8ae; line-height:1.9; }
-.collab-names span { color:var(--gold2); }
-
 /* ═══ MUSIC ═══ */
 #pg-music { padding:0 var(--page-pad) 100px; }
 .music-intro { max-width:620px; margin-bottom:48px; font-size:15px; line-height:1.95; color:#a89f95; }
@@ -218,7 +262,12 @@ body.en [data-en] { display:revert; }
 .contact-grid { display:grid; grid-template-columns:1fr 1fr; gap:72px; align-items:start; }
 .contact-quote { font-family:'Cormorant Garamond',serif; font-size:34px; font-weight:300; font-style:italic; color:var(--gold); line-height:1.35; margin-bottom:32px; }
 .contact-sub { max-width: 560px; font-size:14px; color:#8a8278; line-height:1.9; }
-.contact-list { border:1px solid var(--border); border-radius: var(--card-radius); overflow: hidden; }
+.contact-list {
+  border:1px solid var(--border);
+  border-radius: var(--card-radius);
+  overflow: hidden;
+  background:rgba(14,14,14,0.78);
+}
 .c-item { display:flex; align-items:center; justify-content:space-between; padding:24px 30px; border-bottom:1px solid var(--border); text-decoration:none; cursor:none; transition:background .3s; }
 .c-item:last-child { border-bottom:none; }
 .c-item:hover { background:var(--dark3); }
@@ -248,6 +297,9 @@ footer { padding:32px var(--page-pad); border-top:1px solid var(--border); displ
   .hero-right { position:absolute; inset:0; z-index:0; }
   .hero-left { justify-content:flex-end; padding:0 24px 70px; z-index:2; min-height:100vh; }
   .hero-right::after { background:linear-gradient(to top, var(--dark) 20%, rgba(6,6,6,.6) 100%); }
+  .hero-copy { max-width:none; font-size:14px; }
+  .hero-actions { flex-direction:column; align-items:flex-start; }
+  .hero-btn { width:100%; max-width:260px; }
   .sec-head { margin-bottom: 38px; padding-top: 104px; }
   #pg-about,#pg-music,#pg-contact { padding:0 24px 80px; }
   .about-grid { grid-template-columns:1fr; gap:40px; }
@@ -268,7 +320,7 @@ footer { padding:32px var(--page-pad); border-top:1px solid var(--border); displ
 .projects-section,
 .films-section,
 .audio-section,
-.video-section { margin-bottom: 56px; }
+.video-section { margin-bottom: 64px; }
 .audio-section { margin-bottom:72px; }
 .portfolio-sub-title {
   font-size:9px; letter-spacing:3px; text-transform:uppercase;
@@ -406,9 +458,9 @@ footer { padding:32px var(--page-pad); border-top:1px solid var(--border); displ
 .project-card {
   background:var(--dark2); padding:34px 30px;
   display:flex; gap:24px; align-items:flex-start;
-  transition:background .3s;
+  transition:background .3s, transform .3s;
 }
-.project-card:hover { background:var(--dark3); }
+.project-card:hover { background:var(--dark3); transform:translateY(-2px); }
 .project-num {
   font-family:'Cormorant Garamond',serif;
   font-size:42px; font-weight:300; color:var(--border);
@@ -487,12 +539,26 @@ a.project-card { flex-direction:row; }
         <span data-ru><span>Искандеор</span>&nbsp;Ханнанов</span>
         <span data-en><span>Classical</span>&nbsp;·&nbsp;Electronic</span>
       </p>
+      <p class="hero-copy">
+        <span data-ru>Авторская музыка, кино, сцена и продюсирование: академическая школа, современный звук и выразительная виолончель в одном художественном почерке.</span>
+        <span data-en>Original music, film scoring, live performance and production: academic precision, contemporary sound and expressive cello within one artistic language.</span>
+      </p>
       <div class="hero-line">
         <div></div>
         <p>
           <span data-ru>Классика &amp; Электронная музыка</span>
           <span data-en>Classical &amp; Electronic Music</span>
         </p>
+      </div>
+      <div class="hero-actions">
+        <a class="hero-btn primary" href="#" onclick="go('portfolio');return false;">
+          <span data-ru>Смотреть портфолио</span>
+          <span data-en>View Portfolio</span>
+        </a>
+        <a class="hero-btn secondary" href="#" onclick="go('contact');return false;">
+          <span data-ru>Связаться</span>
+          <span data-en>Get in Touch</span>
+        </a>
       </div>
     </div>
     <div class="hero-right">
@@ -594,20 +660,6 @@ a.project-card { flex-direction:row; }
         </div>
       </div>
 
-      <div class="about-collab">
-        <p class="collab-title">
-          <span data-ru>Сотрудничество</span>
-          <span data-en>Collaborations</span>
-        </p>
-        <p class="collab-names">
-          <span>Владимир Спиваков</span>, Иван Монигетти, <span>Миша Майский</span>,
-          Джованни Соллима, <span>Azamat</span>, ВК x Третьяковская галерея,
-          <span>Symbol</span>, Finetune, <span>IOWA</span>, Lovanda,
-          <span>НЕДРЫ</span>, Александр Гагарин и группа Сансара,
-          <span>Монти Механик</span>, Виталий Гогунский,
-          <span>Радуша</span>, Jah Khalib, <span>Сабина Ахмедова</span>
-        </p>
-      </div>
     </div>
   </div>
 </div>
